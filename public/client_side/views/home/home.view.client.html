@@ -1,0 +1,51 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid row-fliud">
+        <a class="cl-text-white navbar-brand cl-text-bold" href="#/">
+            StarGazers
+        </a>
+        <div class="navbar-text pull-right">
+            <a ng-href="#/{{model.profileOrRegHref}}" class="navbar-link cl-text-white cl-icon-padding">
+                {{model.welcomeOrReg}}
+            </a>
+            <a ng-href="#/{{model.loginOrLogoutHref}}" class="navbar-link cl-text-white cl-icon-padding">
+                {{model.loginOrLogout}}
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <h1 class="text-center cl-text-stargazer">
+        StarGazers
+    </h1>
+    <h3 class="text-center cl-text-stargazer">
+        Share your star gazing experience as your own star.
+    </h3>
+
+    <ul style="max-height: 200px;" class="list-group cl-list-group-borderless text-center">
+        <li  class="list-group-item cl-list-item-borderless">
+            <a>
+                Stars of All Star Gazers
+            </a>
+        </li>
+        <li class="list-group-item cl-list-item-borderless">
+            <a>
+                Share Your Stars
+            </a>
+        </li>
+        <li class="list-group-item cl-list-item-borderless">
+            <a>
+                Check Weather in Star Gazing Location
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fuild">
+        <a href="#/profile" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
+            <span class="glyphicon glyphicon-user"></span>
+        </a>
+    </div>
+</nav>
