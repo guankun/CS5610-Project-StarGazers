@@ -1,0 +1,20 @@
+<div class="form-group">
+    <label for="star-name">Name</label>
+    <textarea id="star-name" class="form-control" rows="1" placeholder={{model.name}} ng-model="model.name"></textarea>
+</div>
+
+<div class="form-group">
+    <label>Text</label>
+    <div ng-model="model.text"
+         text-angular
+         ta-toolbar="[['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'pre', 'quote'],
+      ['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],
+      ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent'],
+      ['html', 'insertImage','insertLink', 'insertVideo', 'wordcount', 'charcount']]">
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="star-html">HTML</label>
+    <textarea id="star-html" class="form-control" placeholder={{model.text}} ng-model="model.text"></textarea>
+</div>

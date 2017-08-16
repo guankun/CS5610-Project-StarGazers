@@ -25,6 +25,17 @@
 </nav>
 
 <div class="container">
+    <div class="col-sm-4 hidden-xs ">
+        <h3 class="text-center">My Stars</h3>
+        <ul class="list-group cl-list-group-borderless">
+            <li ng-repeat="star in model.stars" class="list-group-item cl-list-item-borderless">
+                <a href="#/user/{{model.uid}}/star/{{star._id}}"><span class="glyphicon glyphicon-cog pull-right"></span></a>
+                <a href="#/user/{{model.uid}}/star/{{star._id}}">{{star.name}}</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
     <div ng-show="model.updated" class="alert alert-success" role="alert">{{model.updated}}</div>
     <div ng-show="model.deleted" class="alert alert-success" role="alert">{{model.deleted}}</div>
     <div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>
@@ -48,4 +59,5 @@
         </div>
         <a class="btn btn-danger btn-block" href="#/user/{{model.uid}}/star" ng-click="model.deleteStar()">Delete</a>
     </form>
+    </div>
 </div>
