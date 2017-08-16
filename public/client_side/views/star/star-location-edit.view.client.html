@@ -1,0 +1,17 @@
+<div>
+    <ng-map zoom="4" center="-25.363882, 131.044922" on-click="model.placeMarker()">
+    </ng-map>
+</div>
+
+<div class="form-group">
+    <label for="star-name">Name</label>
+    <textarea id="star-name" class="form-control" rows="1" placeholder={{model.name}} ng-model="model.name"></textarea>
+</div>
+<div class="form-group">
+    <label for="star-text">Text</label>
+    <textarea id="star-text" class="form-control" rows="5" placeholder={{model.text}} ng-model="model.text"></textarea>
+</div>
+<div class="form-group">
+    <label for="star-size">Postion</label>
+    <input readonly id="star-size" class="form-control" placeholder={{model.coordinatesStr}} ng-model="model.coordinatesStr">
+</div>

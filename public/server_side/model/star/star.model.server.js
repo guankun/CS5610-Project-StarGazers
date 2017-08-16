@@ -9,7 +9,7 @@ module.exports = function(mongoose, conn) {
         'findStarById': findStarById,
         'updateStar': updateStar,
         'deleteStar': deleteStar
-    }
+    };
     return api;
 
     function createStar(userId, star){
@@ -25,8 +25,9 @@ module.exports = function(mongoose, conn) {
             height: star.height,
             rows: 0,
             size: star.size ? star.size : 10,
+            coordinates: star.coordinates ? star.coordinates : null,
             dateCreated: Date.now()
-        }
+        };
         return starModel.create(newStar);
     }
 
@@ -57,6 +58,7 @@ module.exports = function(mongoose, conn) {
                 height: star.height ? star.height : 0,
                 rows: star.rows ? star.rows : 0,
                 size: star.size ? star.size : 0,
+                coordinates: star.coordinates ? star.coordinates : null,
                 dateCreated: star.dateCreated
             }
         );
@@ -67,4 +69,4 @@ module.exports = function(mongoose, conn) {
             _id : starId
         });
     }
-}
+};

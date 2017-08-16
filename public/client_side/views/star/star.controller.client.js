@@ -44,7 +44,7 @@
             var del_index = start < end ? start:start+1;
             vm.stars.splice(end, 0, item);
             vm.stars.splice(del_index, 1);
-        }
+        };
     }
 
     function StarAllListController($window, StarService){
@@ -93,7 +93,7 @@
         vm.uid = $routeParams.uid;
     }
 
-    function CreateStarController($routeParams, $timeout, $location, StarService) {
+    function CreateStarController($routeParams, $timeout, $location, StarService, NgMap) {
         var vm = this;
         vm.sid = $routeParams.sid;
         vm.uid = $routeParams.uid;
@@ -108,6 +108,20 @@
         vm.error = null;
         vm.uploaded = null;
         vm.uploading = null;
+
+        NgMap.getMap().then(function(map) {
+            vm.map = map;
+        });
+        vm.placeMarker = function(e) {
+            if(vm.marker != null){
+                vm.marker.setMap(null);
+            }
+            console.log(e.latLng.toJSON());
+            vm.marker = new google.maps.Marker({position: e.latLng, map: vm.map});
+            vm.coordinates = e.latLng.toJSON();
+            vm.coordinatesStr = e.latLng.toString();
+            vm.map.panTo(e.latLng);
+        };
 
         vm.newStar = newStar;
         vm.uploadFile = uploadFile;
@@ -127,7 +141,8 @@
                 width: vm.width,
                 height: vm.height,
                 rows: vm.rows,
-                size: vm.size
+                size: vm.size,
+                coordinates: vm.coordinates
             };
             StarService.createStar(vm.uid, s).then(
                 function successCallback(res){
@@ -167,7 +182,7 @@
         }
     }
 
-    function EditStarController($routeParams, $location, $timeout, StarService) {
+    function EditStarController($routeParams, $location, $timeout, StarService, NgMap) {
         var vm = this;
         vm.uid = $routeParams.uid;
         vm.sid = $routeParams.sid;
@@ -184,9 +199,22 @@
         vm.size = null;
         vm.text = null;
         vm.url = null;
+        vm.coordinates = null;
 
         vm.star = null;
         vm.stars = null;
+
+
+        vm.placeMarker = function(e) {
+            if(vm.marker != null){
+                vm.marker.setMap(null);
+            }
+            console.log(e.latLng.toJSON());
+            vm.marker = new google.maps.Marker({position: e.latLng, map: vm.map});
+            vm.coordinates = e.latLng.toJSON();
+            vm.coordinatesStr = e.latLng.toString();
+            vm.map.panTo(e.latLng);
+        };
 
         StarService.findStarById($routeParams.sid).then(
             function successCallback(res){
@@ -199,8 +227,15 @@
                 vm.url = vm.star.url;
                 vm.placeholder = vm.star.placeholder;
                 vm.rows = vm.star.rows;
-                vm.formatted = vm.star.formatted;
-                vm.deletable = vm.star.deletable;
+                vm.coordinates = vm.star.coordinates;
+                if(vm.star.type == "LOCATION"){
+                    NgMap.getMap().then(function(map) {
+                        vm.map = map;
+                        vm.coordinatesStr = "(" + vm.coordinates.lat + "," + vm.coordinates.lng + ")";
+                        vm.marker = new google.maps.Marker({position: vm.star.coordinates, map: vm.map});
+                        vm.map.panTo(vm.coordinates);
+                    });
+                }
             },
             function errorCallback(res){
                 vm.error = res.data;
@@ -225,12 +260,14 @@
                 return;
             }
             var updatedStar = vm.star;
+            updatedStar.name = vm.name;
             updatedStar.text = vm.text;
             updatedStar.size = vm.size;
             updatedStar.url = vm.url;
             updatedStar.width = vm.width;
             updatedStar.rows = vm.rows;
             updatedStar.placeholder = vm.placeholder;
+            updatedStar.coordinates = vm.coordinates;
 
             StarService.updateStar($routeParams.sid, updatedStar).then(
                 function successCallback(res){

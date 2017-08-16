@@ -20,6 +20,7 @@ module.exports = function(mongoose) {
         height: Number,
         size: Number,
         rows: Number,
+        coordinates: JSON,
         dateCreated: {
             type: Date,
             default: Date.now()

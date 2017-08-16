@@ -31,7 +31,8 @@ module.exports = function(app, models){
             width: star.width,
             height: star.height,
             rows: star.rows,
-            size: star.size
+            size: star.size,
+            coordinates: star.coordinates
         };
         models.starModel.createStar(uid, newStar).then(
             function successCallback(newStar){

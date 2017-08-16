@@ -1,0 +1,12 @@
+<div>
+    <h4>Star Gazing Location: {{star.name}}</h4>
+</div>
+<div>
+    <ng-map zoom="4" center="{{star.coordinates.lat}}, {{star.coordinates.lng}}">
+        <marker position="{{star.coordinates.lat}}, {{star.coordinates.lng}}"></marker>
+    </ng-map>
+</div>
+<div>
+    <text>Coordinates: {{star.coordinates.lat}}, {{star.coordinates.lng}}</text><br/>
+    <text>Description: {{star.text}}</text>
+</div>
