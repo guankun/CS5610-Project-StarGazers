@@ -11,12 +11,14 @@
             vm.loginOrLogout = "Login";
             vm.profileOrRegHref = "register";
             vm.loginOrLogoutHref = "login";
+            vm.uid = -1;
         }
         else{
             vm.welcomeOrReg = "Welcome, " + vm.user.username;
             vm.loginOrLogout = "Logout";
             vm.profileOrRegHref = "profile";
             vm.loginOrLogoutHref = "logout";
+            vm.uid = vm.user._id;
         }
     }
 })();

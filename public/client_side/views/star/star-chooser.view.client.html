@@ -14,33 +14,25 @@
     </div>
 </nav>
 
-<div class="container-fluid">
-    <h1 class="text-center cl-text-stargazer">
-        StarGazers
-    </h1>
-    <h3 class="text-center cl-text-stargazer">
-        Share your star gazing experience as your own star.
-    </h3>
-
-    <ul style="max-height: 200px;" class="list-group cl-list-group-borderless text-center">
-        <li  class="list-group-item cl-list-item-borderless">
-            <a href="#/star">
-                Stars of All Star Gazers
-            </a>
+<div class="container">
+    <ul class="list-group cl-list-group-borderless">
+        <li class="list-group-item cl-list-item-borderless">
+            <a href="#/user/{{model.uid}}/star/create/EVENT">Event</a>
         </li>
         <li class="list-group-item cl-list-item-borderless">
-            <a href="#/user/{{model.uid}}/star/new">
-                Share Your Stars
-            </a>
+            <a href="#/user/{{model.uid}}/star/create/LOCATION">Location</a>
         </li>
         <li class="list-group-item cl-list-item-borderless">
-            <a>
-                Check Weather in Star Gazing Location
-            </a>
+            <a href="#/user/{{model.uid}}/star/create/IMAGE">Image</a>
+        </li>
+        <li class="list-group-item cl-list-item-borderless">
+            <a href="#/user/{{model.uid}}/star/create/YOUTUBE">YouTube</a>
+        </li>
+        <li class="list-group-item cl-list-item-borderless">
+            <a href="#/user/{{model.uid}}/star/create/STORY">Story</a>
         </li>
     </ul>
 </div>
-
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fuild">

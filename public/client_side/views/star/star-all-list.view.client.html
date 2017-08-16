@@ -1,0 +1,58 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid row-fliud">
+        <a class="cl-text-white navbar-brand cl-text-bold" href="#/">
+            StarGazers
+        </a>
+        <div class="navbar-text pull-right">
+            <a ng-href="#/{{model.profileOrRegHref}}" class="navbar-link cl-text-white cl-icon-padding">
+                {{model.welcomeOrReg}}
+            </a>
+            <a ng-href="#/{{model.loginOrLogoutHref}}" class="navbar-link cl-text-white cl-icon-padding">
+                {{model.loginOrLogout}}
+            </a>
+            <a href="#/user/{{model.uid}}/star/new" class="navbar-link cl-text-white cl-icon-padding">
+                <span class="glyphicon glyphicon-plus"></span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+
+    <h1 class="text-center"> Stars of All Star Gazer</h1>
+
+    <div wbdv-sortable callback="model.sortItems(start, end)">
+        <div ng-repeat="star in model.stars">
+            <div class="pull-right">
+                <a href="#/user/{{model.uid}}/star" class="pull-right">
+                    <span class="glyphicon glyphicon-menu-hamburger"></span>
+                </a>
+            </div>
+            <div ng-switch="star.type">
+                <div ng-switch-when="EVENT">
+                    <ng-include src="'client_side/views/star/star-event.view.client.html'"/>
+                </div>
+                <div ng-switch-when="LOCATION">
+                    <ng-include src="'client_side/views/star/star-location.view.client.html'"/>
+                </div>
+                <div ng-switch-when="IMAGE">
+                    <ng-include src="'client_side/views/star/star-image.view.client.html'"/>
+                </div>
+                <div ng-switch-when="YOUTUBE" ng-style="model.setStyle(star)"  >
+                    <ng-include src="'client_side/views/star/star-youtube.view.client.html'"/>
+                </div>
+                <div ng-switch-when="STORY">
+                    <ng-include src="'client_side/views/star/star-story.view.client.html'"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fuild">
+        <a href="#/profile" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
+            <span class="glyphicon glyphicon-user"></span>
+        </a>
+    </div>
+</nav>

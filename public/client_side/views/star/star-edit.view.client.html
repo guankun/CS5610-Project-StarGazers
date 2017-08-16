@@ -1,0 +1,51 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+
+        <div class="navbar-text cl-icon-padding pull-left">
+            <a href="#/user/{{model.uid}}/star" class="navbar-link cl-text-white">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+        </div>
+
+
+        <div class="pull-left">
+            <a class="cl-text-white navbar-brand cl-text-bold" href="#/user/{{model.uid}}/star/{{model.sid}}">
+                Star Edit
+            </a>
+        </div>
+
+
+        <div class="navbar-text cl-icon-padding pull-right">
+            <a class="navbar-link cl-text-white cl-icon-padding" ng-click="model.updateStar()">
+                <span class="glyphicon glyphicon-ok"></span>
+            </a>
+        </div>
+
+    </div>
+</nav>
+
+<div class="container">
+    <div ng-show="model.updated" class="alert alert-success" role="alert">{{model.updated}}</div>
+    <div ng-show="model.deleted" class="alert alert-success" role="alert">{{model.deleted}}</div>
+    <div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>
+    <form >
+        <div ng-switch="model.star.type">
+            <div ng-switch-when="EVENT">
+                <ng-include src="'client_side/views/star/star-event-edit.view.client.html'"/>
+            </div>
+            <div ng-switch-when="LOCATION">
+                <ng-include src="'client_side/views/star/star-location-edit.view.client.html'"/>
+            </div>
+            <div ng-switch-when="IMAGE">
+                <ng-include src="'client_side/views/star/star-image-edit.view.client.html'"/>
+            </div>
+            <div ng-switch-when="YOUTUBE">
+                <ng-include src="'client_side/views/star/star-youtube-edit.view.client.html'"/>
+            </div>
+            <div ng-switch-when="STORY">
+                <ng-include src="'client_side/views/star/star-story-edit.view.client.html'"/>
+            </div>
+        </div>
+        <a class="btn btn-danger btn-block" href="#/user/{{model.uid}}/star" ng-click="model.deleteStar()">Delete</a>
+    </form>
+</div>

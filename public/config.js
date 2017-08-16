@@ -46,6 +46,35 @@
                 controller: "LogoutController",
                 controllerAs: "model"
             })
+            .when('/star', {
+                templateUrl : "client_side/views/star/star-all-list.view.client.html",
+                controller: "StarAllListController",
+                controllerAs: "model"
+            })
+            .when('/user/:uid/star', {
+                templateUrl : "client_side/views/star/star-list.view.client.html",
+                controller: "StarListController",
+                controllerAs: "model",
+                resolve: { loggedin: checkLoggedin }
+            })
+            .when('/user/:uid/star/new', {
+                templateUrl : "client_side/views/star/star-chooser.view.client.html",
+                controller: "NewStarController",
+                controllerAs: "model",
+                resolve: { loggedin: checkLoggedin }
+            })
+            .when('/user/:uid/star/:sid', {
+                templateUrl : "client_side/views/star/star-edit.view.client.html",
+                controller: "EditStarController",
+                controllerAs: "model",
+                resolve: { loggedin: checkLoggedin }
+            })
+            .when('/user/:uid/star/create/:stype', {
+                templateUrl : "client_side/views/star/star-new.view.client.html",
+                controller: "CreateStarController",
+                controllerAs: "model",
+                resolve: { loggedin: checkLoggedin }
+            })
             .otherwise({
                 redirectTo : "/"
             });

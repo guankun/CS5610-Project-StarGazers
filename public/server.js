@@ -5,6 +5,8 @@ module.exports = function(app) {
         process.env.MONGODB_URI ||
         'mongodb://localhost/CS5610_Project';
 
+    mongoose.Promise = global.Promise;
+
     var conn = mongoose.createConnection(uristring, function (err) {
         if (err) {
             console.log ('ERROR connecting to: ' + uristring + '. ' + err);
@@ -16,8 +18,9 @@ module.exports = function(app) {
     var models = require("./server_side/model/models.server.js")(mongoose, conn);
 
     require("./server_side/services/user.service.server.js")(app, models);
+    require("./server_side/services/star.service.server.js")(app, models);
 /*    require("./server_side/services/website.service.server.js")(app, models);
     require("./server_side/services/page.service.server.js")(app, models);
-    require("./server_side/services/widget.service.server.js")(app, models);
+
 */
 };
