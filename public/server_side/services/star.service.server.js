@@ -147,7 +147,7 @@ module.exports = function(app, models){
         var size          = myFile.size;
         var mimetype      = myFile.mimetype;
 
-        var newUrl = '/assignment/uploads/'+filename;
+        var newUrl = '/project/uploads/'+filename;
 
         if(starId == -1){ // create new star
             res.status(200).send(newUrl);

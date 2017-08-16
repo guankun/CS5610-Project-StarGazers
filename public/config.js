@@ -4,7 +4,7 @@
         .config(configuration);
 
     function configuration($routeProvider) {
-        var checkLoggedin = function($q, $timeout, $http, $location, $rootScope) {
+        var checkLoggedin = function($q, $timeout, $http, $location, $rootScope, $window) {
             var deferred = $q.defer();
             $http.get('/api/loggedin').success(function(user) {
                 $rootScope.errorMessage = null;
@@ -12,7 +12,8 @@
                     deferred.resolve(user);
                 } else {
                     deferred.reject();
-                    alert("You are not logged in or unauthorised!");
+                    $window.localStorage.setItem("currentSGUser", null);
+                    alert("You are not logged in or unauthorised, or session time out!");
                     $location.url('/');
                 }
             });

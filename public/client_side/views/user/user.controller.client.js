@@ -124,7 +124,6 @@
             .then(
                 function(res) {
                     $window.localStorage.setItem("currentSGUser", null);
-                    console.log('logout');
                     $location.url("/");
                 },
                 function (response) {
