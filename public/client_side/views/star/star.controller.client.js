@@ -99,16 +99,6 @@
         vm.uid = $routeParams.uid;
         vm.starType = $routeParams.stype;
 
-        vm.name = null;
-        vm.size = null;
-        vm.text = null;
-        vm.width = null;
-        vm.url = null;
-
-        vm.error = null;
-        vm.uploaded = null;
-        vm.uploading = null;
-
         NgMap.getMap().then(function(map) {
             vm.map = map;
         });
@@ -116,7 +106,6 @@
             if(vm.marker != null){
                 vm.marker.setMap(null);
             }
-            console.log(e.latLng.toJSON());
             vm.marker = new google.maps.Marker({position: e.latLng, map: vm.map});
             vm.coordinates = e.latLng.toJSON();
             vm.coordinatesStr = e.latLng.toString();
@@ -146,7 +135,7 @@
             };
             StarService.createStar(vm.uid, s).then(
                 function successCallback(res){
-                    $location.url("/user/" + vm.uid + "/star")
+                    $location.url("/user/" + vm.uid + "/star");
                     vm.created = "Star created!";
                 },
                 function errorCallback(res){
@@ -187,34 +176,7 @@
         vm.uid = $routeParams.uid;
         vm.sid = $routeParams.sid;
 
-        vm.updated = null;
-        vm.deleted = null;
-        vm.error = null;
-        vm.uploaded = null;
-        vm.uploading = null;
 
-        vm.name = null;
-        vm.starType = null;
-        vm.width = null;
-        vm.size = null;
-        vm.text = null;
-        vm.url = null;
-        vm.coordinates = null;
-
-        vm.star = null;
-        vm.stars = null;
-
-
-        vm.placeMarker = function(e) {
-            if(vm.marker != null){
-                vm.marker.setMap(null);
-            }
-            console.log(e.latLng.toJSON());
-            vm.marker = new google.maps.Marker({position: e.latLng, map: vm.map});
-            vm.coordinates = e.latLng.toJSON();
-            vm.coordinatesStr = e.latLng.toString();
-            vm.map.panTo(e.latLng);
-        };
 
         StarService.findStarById($routeParams.sid).then(
             function successCallback(res){
@@ -253,6 +215,18 @@
         vm.updateStar = updateStar;
         vm.deleteStar = deleteStar;
         vm.uploadFile = uploadFile;
+        vm.placeMarker = placeMarker;
+
+        function placeMarker(e) {
+            if(vm.marker != null){
+                vm.marker.setMap(null);
+            }
+            console.log(e.latLng.toJSON());
+            vm.marker = new google.maps.Marker({position: e.latLng, map: vm.map});
+            vm.coordinates = e.latLng.toJSON();
+            vm.coordinatesStr = e.latLng.toString();
+            vm.map.panTo(e.latLng);
+        }
 
         function updateStar() {
             if(!vm.name){
@@ -301,6 +275,10 @@
         }
 
         function uploadFile(myFile){
+            if(myFile == null || myFile == undefined){
+                vm.error = "No File is Selected !!";
+                return;
+            }
             var file = myFile;
             var uploadUrl = "/api/upload";
             var fd = new FormData();

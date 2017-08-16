@@ -4,12 +4,6 @@
             StarGazers
         </a>
         <div class="navbar-text pull-right">
-            <a ng-href="#/{{model.profileOrRegHref}}" class="navbar-link cl-text-white cl-icon-padding">
-                {{model.welcomeOrReg}}
-            </a>
-            <a ng-href="#/{{model.loginOrLogoutHref}}" class="navbar-link cl-text-white cl-icon-padding">
-                {{model.loginOrLogout}}
-            </a>
             <a href="#/user/{{model.uid}}/star/new" class="navbar-link cl-text-white cl-icon-padding">
                 <span class="glyphicon glyphicon-plus"></span>
             </a>
@@ -45,6 +39,7 @@
                     <ng-include src="'client_side/views/star/star-story.view.client.html'"/>
                 </div>
             </div>
+            <hr/>
         </div>
     </div>
 </div>

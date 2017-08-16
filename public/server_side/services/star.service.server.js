@@ -141,6 +141,11 @@ module.exports = function(app, models){
         var starId    = req.body.starId;
         var myFile      = req.file;
 
+        if(myFile == null || myFile == undefined){
+            res.status(400).send("No file selected!");
+            return;
+        }
+
         var originalname  = myFile.originalname; // file name on user's computer
         var filename      = myFile.filename;     // new file name in upload folder
         var path          = myFile.path;         // full path of uploaded file

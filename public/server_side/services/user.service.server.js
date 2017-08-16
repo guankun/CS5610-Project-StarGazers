@@ -59,16 +59,12 @@ module.exports = function(app, models){
 
     // GET Calls.
     app.get('/api/user/:uid', auth, findUserById);
-    /*app.get('/api/user', findUserByUsernameOrCredentials);*/
     app.get('/api/loggedin',       loggedin);
-    //app.get('/api/user',     auth, findAllUsers);
 
     // PUT Calls.
-    //app.put('/api/user/:uid', updateUser);
     app.put('/api/user/:uid', auth, updateUser);
 
     // DELETE Calls.
-    //app.delete('/api/user/:uid', deleteUser);
     app.delete('/api/user/:uid', auth, deleteUser);
 
 
