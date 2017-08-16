@@ -19,4 +19,5 @@ module.exports = function(app) {
 
     require("./server_side/services/user.service.server.js")(app, models);
     require("./server_side/services/star.service.server.js")(app, models);
+    require("./server_side/services/weather.service.server.js")(app);
 };

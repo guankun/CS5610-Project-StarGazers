@@ -221,7 +221,6 @@
             if(vm.marker != null){
                 vm.marker.setMap(null);
             }
-            console.log(e.latLng.toJSON());
             vm.marker = new google.maps.Marker({position: e.latLng, map: vm.map});
             vm.coordinates = e.latLng.toJSON();
             vm.coordinatesStr = e.latLng.toString();

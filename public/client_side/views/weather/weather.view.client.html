@@ -1,0 +1,44 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid row-fliud">
+        <a class="cl-text-white navbar-brand cl-text-bold" href="#/">
+            StarGazers
+        </a>
+    </div>
+</nav>
+
+<div class="container container-fluid">
+    <div ng-show="model.loading" class="alert alert-info" role="alert">{{model.loading}}</div>
+    <div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>
+    <div>
+        <ng-map zoom="4" center="47.620548750265904, -122.33734488487244" on-click="model.placeMarker()">
+        </ng-map>
+    </div>
+    <br/>
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">{{model.info}}</div>
+        <!-- Table -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Location</th>
+                    <th>Main</th>
+                    <th>Temperature</th>
+                    <th>Humidity</th>
+                    <th>Wind Speed</th>
+                    <th>Clouds</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{model.currentWeather.location}}</td>
+                    <td>{{model.currentWeather.main}}</td>
+                    <td>{{model.currentWeather.temperature}}</td>
+                    <td>{{model.currentWeather.humidity}}</td>
+                    <td>{{model.currentWeather.windSpeed}}</td>
+                    <td>{{model.currentWeather.clouds}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

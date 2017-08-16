@@ -76,6 +76,11 @@
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedin }
             })
+            .when('/weather', {
+                templateUrl : "client_side/views/weather/weather.view.client.html",
+                controller: "WeatherController",
+                controllerAs: "model"
+            })
             .otherwise({
                 redirectTo : "/"
             });
